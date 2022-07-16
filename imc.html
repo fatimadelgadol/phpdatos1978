@@ -1,0 +1,117 @@
+<!DOCTYPE HTML PUBLIC> 
+<html>
+ <head>
+ <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+<title>formulario peso ideal</title>
+<script type="text/javascript">
+
+// GRUPO 3:
+//Maria Fernanda Ayon
+//Fátima Delgado Lucio
+//Gabriela Ponce Robles
+//Hilda Quijije Quiroz
+
+ //definimos la funcion
+ function calculaIMC()
+ {
+ //declaramos las variables
+var peso, altura, resultado, leyenda;
+//hacemos la llamada a los datos introducidos
+peso=document.getElementById("peso").value;
+altura=document.getElementById("altura").value/100;
+//calculamos el imc
+ resultado=peso/(altura*altura);
+//enviamos el resultado a la caja correspondiente y lo reducimos a 2 decimales
+ document.getElementById("resultado").value=resultado.toFixed(2);
+//mediante if comparamos el resultado para determinar si es correcto el peso
+if(resultado<18.5)
+ {
+ //determinamos el defecto en peso y definimos el comentario
+ leyenda="Bajo peso,Debes subir " + (altura*altura*24.9-peso).toFixed(1) + " kilos";
+ }
+ else if(resultado>=18.5 && resultado<=24.9) 
+ {
+ //determinamos el defecto en peso y definimos el comentario
+ leyenda="Tienes un peso ideal "
+ }
+ else if(resultado>24.9 && resultado<=29.9) 
+ {
+//determinamos el exceso en peso y definimos el comentario
+leyenda="Sobrepeso. Debes adelgazar "+(peso-altura*altura*24.9).toFixed(1) +" kilos";
+}
+
+else if(resultado>29.9 && resultado<=34.9) 
+
+{
+//determinamos el exceso en peso y definimos el comentario
+leyenda="Obesidad grado 1. Debes adelgazar "+(peso-altura*altura*24.9).toFixed(1) +" kilos";
+}
+
+else if(resultado>34.9 && resultado<=39.9) 
+
+{
+//determinamos el exceso en peso y definimos el comentario
+leyenda="Obesidad grado 2. Debes adelgazar "+(peso-altura*altura*24.9).toFixed(1) +" kilos";
+}
+
+else if(resultado>39.9) 
+
+{
+//determinamos el exceso en peso y definimos el comentario
+leyenda="Obesidad grado 3. Debes adelgazar "+(peso-altura*altura*24.9).toFixed(1) +" kilos";
+}
+
+
+//enviamos el comentario a la caja correspondiente
+document.getElementById("leyenda").value=leyenda;
+ }
+</script>
+ </head>
+ <body>
+<form name="f1" id="f1" action="">
+<!-enmarcamos el formulario->
+<fieldset>
+<!-le damos un nombre al marco->
+<legend>CALCULO DEL PESO IDEAL IMC (Indice de Masa Corporal)</legend>
+ 
+ <p>Nombre:
+ <!-definimos una caja donde introducir el dato del nombre->
+ <input type="text" name="nombre" id="nombre" size="10">
+   <p> El usuario tiene que ser de 4 a 10 dígitos y solo puede contener letras.</p>
+ </p>
+
+ <p>Peso en kg.:
+ <!-definimos una caja donde introducir el dato del peso->
+ <input type="text" name="peso" id="peso" size="3" maxlength="4">
+ </p>
+
+ <p>Altura en cm.:
+ <!-definimos una caja donde introducir el dato de la altura->
+ <input type="text" name="altura" id="altura" size="3" maxlength="3">
+ <!-definimos un boton que hara la llamada a la funcion para calcular el imc->
+ <input type="button" value="Calcular IMC" onClick="calculaIMC()">
+ </p>
+ <p> IMC:
+ <!-definimos una caja donde la funcion devolvera el valor de imc calculado->
+ <input type="text" name="resultado" id="resultado" size="10" maxlength="15">
+ Leyenda:
+ <!-definimos una caja donde la funcion escribira el comentario, definido en leyenda->
+ <input type="text" name="leyenda" id="leyenda" size="42">
+
+ </p>
+</fieldset>
+</form>
+<input type="submit" class="btn btn-primary" value="Guardar" onclick="guardar()">
+
+ <div class="col-6">
+    <input type="submit" class="btn btn-info" value="Consultar" onclick="consultar()">
+ </div>
+
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+<script src="js/configuracion.js"></script> 
+<script src="js/funciones.js"></script>
+
+ </body>
+ </html>
